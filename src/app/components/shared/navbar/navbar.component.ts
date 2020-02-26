@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router  } from '@angular/router';
+import { ChampionsService, Heroe } from '../../../services/champions.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  heros: Heroe[] = [];
+  constructor( private championsService: ChampionsService,
+               private activatedRoute: ActivatedRoute,
+               private router: Router) { }
 
   ngOnInit(): void {
+
   }
+  buscarHero(termino: string) {
+      this.router.navigate( ['/buscar', termino] );
+  }
+  // buscarHero(value: string) {
+  //   this.heros = this.championsService.buscarHero(value);
+  //   console.table(this.heros);
+  // }
 
 }

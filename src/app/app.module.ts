@@ -14,6 +14,8 @@ import { HerosComponent } from './components/heros/heros.component';
 
 // Servicion
 import { ChampionsService } from './services/champions.service';
+import { HeroComponent } from './components/hero/hero.component';
+import { BuscarComponent } from './components/buscar/buscar.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { ChampionsService } from './services/champions.service';
     NavbarComponent,
     HomeComponent,
     AboutComponent,
-    HerosComponent
+    HerosComponent,
+    HeroComponent,
+    BuscarComponent
   ],
   imports: [
     BrowserModule,

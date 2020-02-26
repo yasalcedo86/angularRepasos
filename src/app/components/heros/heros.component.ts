@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ChampionsService } from '../../services/champions.service';
+import { ChampionsService, Heroe } from '../../services/champions.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-heros',
@@ -7,15 +8,20 @@ import { ChampionsService } from '../../services/champions.service';
   styleUrls: ['./heros.component.css']
 })
 export class HerosComponent implements OnInit {
-  a: string[] = ['1', '2', '3'];
-  heros: any[] = [];
+  heros: Heroe[] = [];
 
-  constructor( private championsService: ChampionsService ) {
+  constructor( private championsService: ChampionsService,
+               private router: Router
+    ) {
 
-   }
+  }
 
   ngOnInit(): void {
     this.heros = this.championsService.getHeroes();
+  }
+
+  verHeroe(index){
+    this.router.navigate( ['/hero', index] );
   }
 
 }

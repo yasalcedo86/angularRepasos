@@ -1,22 +1,30 @@
 import { Injectable } from '@angular/core';
 
+export interface Heroe {
+  nombre: string;
+  bio: string;
+  img: string;
+  aparicion: string;
+  casa: string;
+}
+
 @Injectable()
 export class ChampionsService {
 
-    private heroes: any[] = [
+    private heroes: Heroe[] = [
         {
           nombre: 'Aquaman',
           bio: 'El poder más reconocido de Aquaman es la capacidad telepática para comunicarse con la vida marina, la cual puede convocar a grandes distancias.',
           img: 'assets/img/aquaman.png',
           aparicion: '1941-11-01',
-          casa:'DC'
+          casa: 'DC'
         },
         {
           nombre: 'Batman',
           bio: 'Los rasgos principales de Batman se resumen en «destreza física, habilidades deductivas y obsesión». La mayor parte de las características básicas de los cómics han variado por las diferentes interpretaciones que le han dado al personaje.',
           img: 'assets/img/batman.png',
           aparicion: '1939-05-01',
-          casa:'DC'
+          casa: 'DC'
         },
         {
           nombre: 'Daredevil',
@@ -30,7 +38,7 @@ export class ChampionsService {
           bio: 'Su principal poder es su capacidad de aumentar su fuerza hasta niveles prácticamente ilimitados a la vez que aumenta su furia. Dependiendo de qué personalidad de Hulk esté al mando en ese momento (el Hulk Banner es el más débil, pero lo compensa con su inteligencia).',
           img: 'assets/img/hulk.png',
           aparicion: '1962-05-01',
-          casa:'Marvel'
+          casa: 'Marvel'
         },
         {
           nombre: 'Linterna Verde',
@@ -59,7 +67,32 @@ export class ChampionsService {
         console.log('Servico listo para usar :3');
     }
 
+    /**
+     * *retona un array de todos objetos del tipo Heroe
+     */
     getHeroes() {
         return this.heroes;
     }
+
+    /**
+     * *retona un objeto del tipo Heroe
+     */
+    getHero(index: string) {
+      return this.heroes[index];
+  }
+
+    /**
+     * *busca y retorna un objeto del tipo Heroe
+     */
+    buscarHero(data: string):Heroe[] {
+      let heroesArray: Heroe[] = [];
+      data = data.toLowerCase();
+      for ( let hero of this.heroes ) {
+        let nombre = hero.nombre.toLowerCase();
+        if ( nombre.indexOf(data) >= 0 ) {
+          heroesArray.push( hero );
+        }
+      }
+      return heroesArray;
+  }
 }
